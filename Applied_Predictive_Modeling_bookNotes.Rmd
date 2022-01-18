@@ -1,0 +1,92 @@
+---
+title: 'Applied Predictive Modeling, by M. Kuhn and K. Johnson.'
+author: "Booknotes by Fernando San Segundo."
+date: 'Last updated: `r format(Sys.time(), "%Y-%m-%d")`'
+output:
+  github_document:
+    html_preview: true
+  pdf_document:
+    includes:
+      in_header: mystyles.sty
+    toc: yes
+    toc_depth: '2'
+  html_document:
+    self_contained: no
+    toc: yes
+    toc_depth: 3
+    toc_float: no
+bibliography: '`r  path.expand(paste0(Sys.getenv("HOME"),"/OneDrive/bib/FernandoSanSegundo.bib"))`'
+---
+
+
+```{r echo=FALSE}
+usePython = FALSE
+```
+
+
+```{r setup, echo=FALSE, warning=FALSE, results='hide', eval=usePython}
+library(knitr)
+library(reticulate)
+library(readr)
+
+## OS detection
+OSystem = R.version$platform
+
+(Mac = grepl("apple", OSystem))
+(Windows = grepl("w64|w32", OSystem))
+(Linux = grepl("linux", OSystem))
+```
+
+
+```{r python_setup, echo=FALSE, warning=FALSE, results='hide', eval=usePython}
+# py_discover_config()
+
+
+if(Linux) use_python("~/venvs/py3/bin/python3", required = TRUE)
+if(Windows){
+  homedir = paste0("C:/Users/", Sys.getenv("USERNAME"), "/")
+  # use_python(paste0(homedir, "Anaconda3/python.exe"), required=T)
+    venvDir = paste0(homedir, "venvs/scp")
+    use_virtualenv(venvDir, required = TRUE)
+
+  }
+if(Mac){
+  homedir = paste0("/Users/", Sys.getenv("USER"), "/")
+  venvDir = normalizePath("~/venvs/py3")
+  use_virtualenv(venvDir, required = TRUE)
+}
+
+
+# if(Windows){
+#   source(paste0(homedir,"Dropbox/local/dropbox_project_sync_off.R"))
+#   dropbox_project_sync_off()
+# } 
+
+matplotlib = import("matplotlib", convert = TRUE)
+matplotlib$use("Agg")
+```
+
+```{python, echo=FALSE, eval=usePython}
+## Python setup
+
+import sys
+# sys.path.append('../statsintro_python/ISP/Listings/')
+import os
+# os.environ['QT_QPA_PLATFORM_PLUGIN_PATH']='c:/Users/ferna/Anaconda3/Library/plugins/platforms'
+```
+
+# Preliminaries and Book Information.
+
+## Useful links
+
+[Continue reading at]() 
+
+[Book page at Springer](https://link.springer.com/book/10.1007/978-1-4614-6849-3)
+
+
+
+
+
+```{r}
+library(tidyverse)
+```
